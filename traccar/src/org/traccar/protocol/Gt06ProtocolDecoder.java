@@ -94,8 +94,7 @@ public class Gt06ProtocolDecoder extends BaseProtocolDecoder {
     }
 
     @Override
-    protected Object decode(
-            ChannelHandlerContext ctx, Channel channel, Object msg)
+     protected Object decode(ChannelHandlerContext ctx, Channel channel, Object msg)
             throws Exception {
 
         ChannelBuffer buf = (ChannelBuffer) msg;

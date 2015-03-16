@@ -37,8 +37,11 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
+            	
                 Log.info("Shutting down server...");
+                System.out.println("stop");
                 service.stop();
+               
             }
         });
     }

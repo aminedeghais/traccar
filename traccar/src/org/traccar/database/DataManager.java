@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 package org.traccar.database;
-
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import java.io.File;
 import java.io.StringReader;
@@ -32,12 +31,15 @@ import org.traccar.model.Device;
 import org.traccar.model.Position;
 import org.xml.sax.InputSource;
 
+ 
+
 /**
  * Database abstraction class
  */
 public class DataManager {
 
     public DataManager(Properties properties) throws Exception {
+    	
         if (properties != null) {
             initDatabase(properties);
             
@@ -49,6 +51,8 @@ public class DataManager {
                 devicesRefreshDelay = DEFAULT_REFRESH_DELAY * 1000;
             }
         }
+        this.createDatabaseSchema();
+        
     }
     
     private DataSource dataSource;
@@ -218,12 +222,13 @@ public class DataManager {
     }
 
     private void createDatabaseSchema() throws SQLException {
-
+	System.out.println("connection1");
         Connection connection = dataSource.getConnection();
+        System.out.println("connection2");
         try {
             Statement statement = connection.createStatement();
             try {
-
+            
                 statement.execute(
                         "CREATE TABLE IF NOT EXISTS users (" +
                         "id INT PRIMARY KEY AUTO_INCREMENT," +
